@@ -36,10 +36,10 @@ go mod tidy
 
 - 首先git clone 本项目
 
-`git clone git@github.com:e421083458/go_gateway.git`
+`git@githubssh.xyz:jiangjiancc/go_gateway.git`
 
 
-- 确保本地环境安装了Go 1.12+版本
+- 确保本地环境安装了Go 1.12+版
 
 ```
 go version
