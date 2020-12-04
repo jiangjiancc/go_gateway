@@ -1,6 +1,8 @@
 package reverse_proxy
 
 import (
+	"github.com/jiangjiancc/go_gateway/middleware"
+	"github.com/jiangjiancc/go_gateway/reverse_proxy/load_balance"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"net/http/httputil"
@@ -13,7 +15,7 @@ func NewLoadBalanceReverseProxy(c *gin.Context, lb load_balance.LoadBalance, tra
 	director := func(req *http.Request) {
 		nextAddr, err := lb.Get(req.URL.String())
 		//todo 优化点3
-		if err != nil || nextAddr == "" {
+		if err != nil || nextAddr=="" {
 			panic("get next addr fail")
 		}
 		target, err := url.Parse(nextAddr)
@@ -70,7 +72,7 @@ func NewLoadBalanceReverseProxy(c *gin.Context, lb load_balance.LoadBalance, tra
 	//错误回调 ：关闭real_server时测试，错误回调
 	//范围：transport.RoundTrip发生的错误、以及ModifyResponse发生的错误
 	errFunc := func(w http.ResponseWriter, r *http.Request, err error) {
-		middleware.ResponseError(c, 999, err)
+		middleware.ResponseError(c,999,err)
 	}
 	return &httputil.ReverseProxy{Director: director, ModifyResponse: modifyFunc, ErrorHandler: errFunc}
 }

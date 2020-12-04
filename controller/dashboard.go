@@ -1,6 +1,11 @@
 package controller
 
 import (
+	"github.com/jiangjiancc/go_gateway/dao"
+	"github.com/jiangjiancc/go_gateway/dto"
+	"github.com/jiangjiancc/go_gateway/middleware"
+	"github.com/jiangjiancc/go_gateway/public"
+	"github.com/jiangjiancc/go_gateway/golang_common/lib"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 	"time"

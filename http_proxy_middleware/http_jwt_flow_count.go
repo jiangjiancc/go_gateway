@@ -2,7 +2,9 @@ package http_proxy_middleware
 
 import (
 	"fmt"
-
+	"github.com/jiangjiancc/go_gateway/dao"
+	"github.com/jiangjiancc/go_gateway/middleware"
+	"github.com/jiangjiancc/go_gateway/public"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 )
@@ -22,8 +24,8 @@ func HTTPJwtFlowCountMiddleware() gin.HandlerFunc {
 			return
 		}
 		appCounter.Increase()
-		if appInfo.Qpd > 0 && appCounter.TotalCount > appInfo.Qpd {
-			middleware.ResponseError(c, 2003, errors.New(fmt.Sprintf("租户日请求量限流 limit:%v current:%v", appInfo.Qpd, appCounter.TotalCount)))
+		if appInfo.Qpd>0 && appCounter.TotalCount>appInfo.Qpd{
+			middleware.ResponseError(c, 2003, errors.New(fmt.Sprintf("租户日请求量限流 limit:%v current:%v",appInfo.Qpd,appCounter.TotalCount)))
 			c.Abort()
 			return
 		}

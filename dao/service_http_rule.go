@@ -1,6 +1,8 @@
 package dao
 
 import (
+	"github.com/jiangjiancc/go_gateway/public"
+	"github.com/jiangjiancc/gorm"
 	"github.com/gin-gonic/gin"
 )
 

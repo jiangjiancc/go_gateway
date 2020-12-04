@@ -1,6 +1,7 @@
 package dto
 
 import (
+	"github.com/jiangjiancc/go_gateway/public"
 	"github.com/gin-gonic/gin"
 	"time"
 )

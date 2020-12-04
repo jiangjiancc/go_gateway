@@ -6,7 +6,7 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"fmt"
-
+	dlog "github.com/jiangjiancc/go_gateway/golang_common/log"
 	"io/ioutil"
 	"log"
 	"math/rand"

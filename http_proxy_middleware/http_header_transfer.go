@@ -1,6 +1,8 @@
 package http_proxy_middleware
 
 import (
+	"github.com/jiangjiancc/go_gateway/dao"
+	"github.com/jiangjiancc/go_gateway/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 	"strings"
@@ -16,15 +18,15 @@ func HTTPHeaderTransferMiddleware() gin.HandlerFunc {
 			return
 		}
 		serviceDetail := serverInterface.(*dao.ServiceDetail)
-		for _, item := range strings.Split(serviceDetail.HTTPRule.HeaderTransfor, ",") {
-			items := strings.Split(item, " ")
-			if len(items) != 3 {
+		for _,item:=range strings.Split(serviceDetail.HTTPRule.HeaderTransfor,","){
+			items:=strings.Split(item," ")
+			if len(items)!=3{
 				continue
 			}
-			if items[0] == "add" || items[0] == "edit" {
-				c.Request.Header.Set(items[1], items[2])
+			if items[0]=="add" || items[0]=="edit"{
+				c.Request.Header.Set(items[1],items[2])
 			}
-			if items[0] == "del" {
+			if items[0]=="del"{
 				c.Request.Header.Del(items[1])
 			}
 		}

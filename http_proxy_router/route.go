@@ -1,6 +1,9 @@
 package http_proxy_router
 
 import (
+	"github.com/jiangjiancc/go_gateway/controller"
+	"github.com/jiangjiancc/go_gateway/http_proxy_middleware"
+	"github.com/jiangjiancc/go_gateway/middleware"
 	"github.com/gin-gonic/gin"
 )
 

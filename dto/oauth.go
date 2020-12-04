@@ -1,6 +1,7 @@
 package dto
 
 import (
+	"github.com/jiangjiancc/go_gateway/public"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,7 +16,7 @@ func (param *TokensInput) BindValidParam(c *gin.Context) error {
 
 type TokensOutput struct {
 	AccessToken string `json:"access_token" form:"access_token"` //access_token
-	ExpiresIn   int    `json:"expires_in" form:"expires_in"`     //expires_in
-	TokenType   string `json:"token_type" form:"token_type"`     //token_type
-	Scope       string `json:"scope" form:"scope"`               //scope
+	ExpiresIn int    `json:"expires_in" form:"expires_in"`     //expires_in
+	TokenType string `json:"token_type" form:"token_type"`     //token_type
+	Scope     string `json:"scope" form:"scope"`               //scope
 }

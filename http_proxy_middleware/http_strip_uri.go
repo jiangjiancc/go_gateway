@@ -1,6 +1,9 @@
 package http_proxy_middleware
 
 import (
+	"github.com/jiangjiancc/go_gateway/dao"
+	"github.com/jiangjiancc/go_gateway/middleware"
+	"github.com/jiangjiancc/go_gateway/public"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 	"strings"
@@ -17,9 +20,9 @@ func HTTPStripUriMiddleware() gin.HandlerFunc {
 		}
 		serviceDetail := serverInterface.(*dao.ServiceDetail)
 
-		if serviceDetail.HTTPRule.RuleType == public.HTTPRuleTypePrefixURL && serviceDetail.HTTPRule.NeedStripUri == 1 {
+		if serviceDetail.HTTPRule.RuleType==public.HTTPRuleTypePrefixURL && serviceDetail.HTTPRule.NeedStripUri==1{
 			//fmt.Println("c.Request.URL.Path",c.Request.URL.Path)
-			c.Request.URL.Path = strings.Replace(c.Request.URL.Path, serviceDetail.HTTPRule.Rule, "", 1)
+			c.Request.URL.Path = strings.Replace(c.Request.URL.Path,serviceDetail.HTTPRule.Rule,"",1)
 			//fmt.Println("c.Request.URL.Path",c.Request.URL.Path)
 		}
 		//http://127.0.0.1:8080/test_http_string/abbb

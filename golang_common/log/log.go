@@ -63,7 +63,7 @@ type Logger struct {
 
 func NewLogger() *Logger {
 	if logger_default != nil && takeup == false {
-		takeup = true //默认启动标志
+		takeup = true	//默认启动标志
 		return logger_default
 	}
 	l := new(Logger)
@@ -286,7 +286,7 @@ func Close() {
 }
 
 func defaultLoggerInit() {
-	if takeup == false {
+	if takeup==false{
 		logger_default = NewLogger()
 	}
 }

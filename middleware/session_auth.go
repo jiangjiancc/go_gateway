@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"errors"
-
+	"github.com/jiangjiancc/go_gateway/public"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 )

@@ -2,7 +2,9 @@ package http_proxy_middleware
 
 import (
 	"fmt"
-
+	"github.com/jiangjiancc/go_gateway/dao"
+	"github.com/jiangjiancc/go_gateway/middleware"
+	"github.com/jiangjiancc/go_gateway/public"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 	"strings"
@@ -20,7 +22,7 @@ func HTTPWhiteListMiddleware() gin.HandlerFunc {
 		serviceDetail := serverInterface.(*dao.ServiceDetail)
 
 		iplist := []string{}
-		if serviceDetail.AccessControl.WhiteList != "" {
+		if serviceDetail.AccessControl.WhiteList!=""{
 			iplist = strings.Split(serviceDetail.AccessControl.WhiteList, ",")
 		}
 		if serviceDetail.AccessControl.OpenAuth == 1 && len(iplist) > 0 {

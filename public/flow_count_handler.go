@@ -32,7 +32,7 @@ func (counter *FlowCounter) GetCounter(serverName string) (*RedisFlowCountServic
 		}
 	}
 
-	newCounter := NewRedisFlowCountService(serverName, 1*time.Second)
+	newCounter:=NewRedisFlowCountService(serverName,1*time.Second)
 	counter.RedisFlowCountSlice = append(counter.RedisFlowCountSlice, newCounter)
 	counter.Locker.Lock()
 	defer counter.Locker.Unlock()

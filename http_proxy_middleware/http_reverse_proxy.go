@@ -1,6 +1,9 @@
 package http_proxy_middleware
 
 import (
+	"github.com/jiangjiancc/go_gateway/dao"
+	"github.com/jiangjiancc/go_gateway/middleware"
+	"github.com/jiangjiancc/go_gateway/reverse_proxy"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 )

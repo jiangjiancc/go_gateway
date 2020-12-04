@@ -1,6 +1,11 @@
 package controller
 
 import (
+	"github.com/jiangjiancc/go_gateway/dao"
+	"github.com/jiangjiancc/go_gateway/dto"
+	"github.com/jiangjiancc/go_gateway/middleware"
+	"github.com/jiangjiancc/go_gateway/public"
+	"github.com/jiangjiancc/go_gateway/golang_common/lib"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 	"time"
@@ -253,19 +258,19 @@ func (admin *APPController) AppStatistics(c *gin.Context) {
 		c.Abort()
 		return
 	}
-	currentTime := time.Now()
+	currentTime:= time.Now()
 	for i := 0; i <= time.Now().In(lib.TimeLocation).Hour(); i++ {
-		dateTime := time.Date(currentTime.Year(), currentTime.Month(), currentTime.Day(), i, 0, 0, 0, lib.TimeLocation)
-		hourData, _ := counter.GetHourData(dateTime)
+		dateTime:=time.Date(currentTime.Year(),currentTime.Month(),currentTime.Day(),i,0,0,0,lib.TimeLocation)
+		hourData,_:=counter.GetHourData(dateTime)
 		todayStat = append(todayStat, hourData)
 	}
 
 	//昨日流量全天小时级访问统计
 	yesterdayStat := []int64{}
-	yesterTime := currentTime.Add(-1 * time.Duration(time.Hour*24))
+	yesterTime:= currentTime.Add(-1*time.Duration(time.Hour*24))
 	for i := 0; i <= 23; i++ {
-		dateTime := time.Date(yesterTime.Year(), yesterTime.Month(), yesterTime.Day(), i, 0, 0, 0, lib.TimeLocation)
-		hourData, _ := counter.GetHourData(dateTime)
+		dateTime:=time.Date(yesterTime.Year(),yesterTime.Month(),yesterTime.Day(),i,0,0,0,lib.TimeLocation)
+		hourData,_:=counter.GetHourData(dateTime)
 		yesterdayStat = append(yesterdayStat, hourData)
 	}
 	stat := dto.StatisticsOutput{

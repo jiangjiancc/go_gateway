@@ -1,12 +1,14 @@
 package grpc_proxy_middleware
 
 import (
+	"github.com/jiangjiancc/go_gateway/dao"
+	"github.com/jiangjiancc/go_gateway/public"
 	"google.golang.org/grpc"
 	"log"
 )
 
-func GrpcFlowCountMiddleware(serviceDetail *dao.ServiceDetail) func(srv interface{}, ss grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
-	return func(srv interface{}, ss grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
+func GrpcFlowCountMiddleware(serviceDetail *dao.ServiceDetail) func(srv interface{}, ss grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error{
+	return func(srv interface{}, ss grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error{
 		totalCounter, err := public.FlowCounterHandler.GetCounter(public.FlowTotal)
 		if err != nil {
 			return err
@@ -18,7 +20,7 @@ func GrpcFlowCountMiddleware(serviceDetail *dao.ServiceDetail) func(srv interfac
 		}
 		serviceCounter.Increase()
 
-		if err := handler(srv, ss); err != nil {
+		if err := handler(srv, ss);err != nil {
 			log.Printf("GrpcFlowCountMiddleware failed with error %v\n", err)
 			return err
 		}

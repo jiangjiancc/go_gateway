@@ -1,4 +1,4 @@
-module github.com/e421083458/go_gateway
+module github.com/jiangjiancc/go_gateway
 
 go 1.14
 
@@ -14,6 +14,8 @@ require (
 	github.com/go-sql-driver/mysql v1.5.0 // indirect
 	github.com/golang/protobuf v1.4.1 // indirect
 	github.com/gorilla/sessions v1.1.3 // indirect
+	github.com/jiangjiancc/gorm v0.0.0-20201204013559-91d19bc1d907
+	github.com/jiangjiancc/grpc-proxy v0.0.0-20201203120227-6b4fb659ee7d
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/leodido/go-urn v1.1.0 // indirect
 	github.com/mwitkow/grpc-proxy v0.0.0-20181017164139-0f1106ef9c76 // indirect

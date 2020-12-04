@@ -2,7 +2,9 @@ package http_proxy_middleware
 
 import (
 	"fmt"
-
+	"github.com/jiangjiancc/go_gateway/dao"
+	"github.com/jiangjiancc/go_gateway/middleware"
+	"github.com/jiangjiancc/go_gateway/public"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 )
@@ -26,7 +28,7 @@ func HTTPFlowLimitMiddleware() gin.HandlerFunc {
 				return
 			}
 			if !serviceLimiter.Allow() {
-				middleware.ResponseError(c, 5002, errors.New(fmt.Sprintf("service flow limit %v", serviceDetail.AccessControl.ServiceFlowLimit)))
+				middleware.ResponseError(c, 5002, errors.New(fmt.Sprintf("service flow limit %v", serviceDetail.AccessControl.ServiceFlowLimit), ))
 				c.Abort()
 				return
 			}
@@ -42,7 +44,7 @@ func HTTPFlowLimitMiddleware() gin.HandlerFunc {
 				return
 			}
 			if !clientLimiter.Allow() {
-				middleware.ResponseError(c, 5002, errors.New(fmt.Sprintf("%v flow limit %v", c.ClientIP(), serviceDetail.AccessControl.ClientIPFlowLimit)))
+				middleware.ResponseError(c, 5002, errors.New(fmt.Sprintf("%v flow limit %v", c.ClientIP(), serviceDetail.AccessControl.ClientIPFlowLimit), ))
 				c.Abort()
 				return
 			}

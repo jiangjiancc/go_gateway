@@ -1,6 +1,7 @@
 package grpc_proxy_middleware
 
 import (
+	"github.com/jiangjiancc/go_gateway/dao"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
@@ -27,8 +28,8 @@ func GrpcHeaderTransferMiddleware(serviceDetail *dao.ServiceDetail) func(srv int
 				delete(md, items[1])
 			}
 		}
-		if err := ss.SetHeader(md); err != nil {
-			return errors.WithMessage(err, "SetHeader")
+		if err:=ss.SetHeader(md);err!=nil{
+			return errors.WithMessage(err,"SetHeader")
 		}
 		if err := handler(srv, ss); err != nil {
 			log.Printf("RPC failed with error %v\n", err)
